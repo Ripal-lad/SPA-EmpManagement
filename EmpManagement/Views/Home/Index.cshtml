@@ -2,22 +2,67 @@
 @{
     ViewBag.Title = "Index";
 }
-   
+   @section JavaScript{
+    <script type="text/javascript" src="@Url.Content("~/Content/js/Emp.js")"></script>
+}
 
-<div class="jumbotron">
-    <h2 style="color:blue" ><u>Employee Management System</u></h2>
-    <p class="lead" style="color:chocolate">Employee management system makes it easy to check the details of Employees and Department.
-      </p>
-    <div></div>
-   <div>
-       @Html.ActionLink("Employee Detail","../Emp/Index")
-     </div>
-    <div>
-        @Html.ActionLink("Department Detail", "../Dept/Index")
-        
+<div class=" home jumbotron">
+    <div class="divhome jumbotron">
+        <h2 style="color:blue"><u>Employee Management System</u></h2>
+        <p class="lead" style="color:chocolate">
+            Employee management system makes it easy to check the details of Employees and Department.
+        </p>
+        <div></div>
+        <div>
+            @Html.ActionLink("Employee Detail", "", "", new { href = "javascript:void(0)", @class = "Employee" })
+        </div>
+        <div>
+            @Html.ActionLink("Department Detail", "", "", new { href = "javascript:void(0)", @class = "Department" })
+        </div>
     </div>
- </div>
+    <div class="divindex" style="display: none">
+        <table align="center" class="table" id="empindex" cellspacing="10" cellpadding="2"></table>
+    </div>
+    <div class="divedit" style="display: none">
+        <table align="center" class="table" id="tableedit" cellspacing="10" cellpadding="2"></table>
+        @*<div>
+        <input type="button" value="Update" id="id" name="Update" class="update btn btn-default">
+        <input type="button" value="Cancel" name="Reset" class="cancel btn btn-default">
+    </div>*@
+    </div>
+  
+    <div class="divdetail jumbotron" style="display: none">
 
+        <table cellspacing="10" align="center" id="tabledetail" class="table" cellpadding="5" style="font-size:large">
+        </table>
 
+    </div>
+    <div class="divcreate jumbotron" style="display: none">
+
+        <table cellspacing="10" align="center" class="table" id="tablecreate" cellpadding="5" style="font-size:large"></table>
+    
+    </div>
+
+    @* Department detail*@
+    <div class="divdeptindex" style="display: none">
+        <table align="center" class="table" id="depttable" cellspacing="10" cellpadding="2"></table>
+    </div>
+
+    <div class="divdeptcreate" style="display: none">
+        <table align="center" class="table" id="deptcreate" cellspacing="10" cellpadding="2"></table>
+    </div>
+
+    <div class="divdeptupdate" style="display: none">
+        <table align="center" class="table" id="deptupdate" cellspacing="10" cellpadding="2"></table>
+    </div>
+
+    <div class="divdeptdetail" style="display: none">
+        <table align="center" class="table" id="deptdetail" cellspacing="10" cellpadding="2"></table>
+       
+    </div>
+    <div class="divdeptnotfound" style="display: none">
+        <table align="center" class="table" id="Nodatatable" cellspacing="10" cellpadding="2"></table>
+        </div>
+    </div>
     
 

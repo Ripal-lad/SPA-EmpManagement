@@ -132,7 +132,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="JsonSerialization.cs" />
     <Compile Include="Models\Dept.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

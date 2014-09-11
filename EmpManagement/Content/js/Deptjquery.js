@@ -2,6 +2,7 @@
 var flag = false;
 $(document).ready(function () {
     alert("hello");
+    //$(".divindex").show();
     $("#error").html("");
 
     $(".create").click(function (event) {
@@ -188,31 +189,35 @@ $(document).ready(function () {
 
 
     $(".detail").click(function (event) {
-        //alert("hi");
+
+        $(".divdetail").show();
+        $(".divindex").hide();
+       
+      //  alert("hi");
         event.preventDefault();
         var id = $(this).attr("id");   // id of deptartment
-        //alert("id = " + id);
+      //  alert("id = " + id);
         console.log("id = " + id);
         var deptname = $(this).attr("name");
-        //$("#Indextable").remove();
+        
         // alert("dept = " + deptname);
         $.ajax({
             type: 'GET',
             url: "/Dept/Detail/",
             datatype: 'json',
             success: function (data) {
-                //  alert("success");
+               // alert("success");
                 console.log("success" + "data = " + data);
                 // window.location.href="../Dept/Details";
                 tr = $("<tr></tr>");
                 tr.append("<h2 style='color:blue' align ='center'> Details of " + deptname + " </h2>");
-                $("#Indextable").append(tr);
+                $("#detailtable").append(tr);
                 tr = $("<tr></tr>");
                 tr.append("<a href = '/Dept/Index'> Back </td>");
-                $("#Indextable").append(tr);
+                $("#detailtable").append(tr);
                 tr = $("<tr class = 'header'></tr>");
                 tr.append("<th>Name</th><th>Designation</th><th>Emailid</th><th>Contactno</th>");
-                $("#Indextable").append(tr);
+                $("#detailtable").append(tr);
 
                 $.each(JSON.parse(data), function (key, value) {
                     //  alert("inside each");
@@ -225,23 +230,28 @@ $(document).ready(function () {
                         //  alert("flag = " + flag);
                         //alert("value of deptid"+value.DeptID +" id of selection = "+id);
 
-                        $("#datanotfound").remove();
+                      //  $("#datanotfound").remove();
                         tr = $("<tr></tr>");
                         tr.append("<td>" + value.Name + "</td><td>"
                                          + value.Designation + "</td><td>"
                                          + value.Emailid + "</td><td>"
                                          + value.ContactNo + "</td><td >");
-                        $("#Indextable").append(tr);
+                        $("#detailtable").append(tr);
 
                     }
                 });
                 if (!flag) {
                     // alert("flag = " + flag);
-                    alert("No data found");
-                    $("#datafound").remove();
+                  //  alert("No data found");
+                    //  $("#datafound").remove();
+                    $(".divdetail").hide();
+                    $(".divnodata").show();
                     tr = $("<tr></tr>");
-                    tr.append("<td align ='center' id='datanotfound'> No data found </td>");
-                    $("#Indextable").append(tr);
+                    tr.append("<h2 style='color:blue'> Details of " + deptname + " </h2>");
+                    $("#Nodatatable").append(tr);
+                   tr = $("<tr></tr>");
+                    tr.append("<td> No data found </td>");
+                    $("#Nodatatable").append(tr);
 
                 };
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<EmpManagement.Models.Employee>
 
 @{
     ViewBag.Title = "Index";
@@ -10,10 +10,11 @@
 
 
         
+<div id="emplyeedetail">
     
-      <div class="index jumbotron" style="display: none">
+      <div class="index jumbotron">
           <h2 style="color:blue;align-content:center">Employee Details</h2>
-    @model IEnumerable<EmpManagement.Models.Employee>
+    
     <table align="center" class="table" cellspacing="10" cellpadding="2">
 
         <tr>
@@ -89,13 +90,7 @@
 
     <table cellspacing="10" align="center" id="tabledetail" class="table" cellpadding="5" style="font-size:large">
 
-        <tr>
-            <th align="center" colspan="2">
-                <h2 style="color:blue"> Details </h2>
-            </th>
-        </tr>
-
-        <tr>
+       @*x  <tr>
             <td>
                 @Html.ActionLink("Edit", "Edit")
 
@@ -110,6 +105,18 @@
             <td>
                 @Html.ActionLink("Back to List", "Index")
             </td>
-        </tr>
-    </table>
+        </tr>  *@
+        </table>
+       
+    </div>
+
+    <div class="divcreate jumbotron" style="display: none">
+
+        <div>@Html.ActionLink("Back to List", "Index")</div>
+        <table cellspacing="10" align="center" class="table" id="tablecreate" cellpadding="5" style="font-size:large"></table>
+        <div>
+            <input type="button" value="Create" id="id" name="Update" class="btncreate btn btn-default">
+            <input type="button" value="Cancel" name="Reset" class="cancel btn btn-default">
+        </div>
+    </div>
 </div>

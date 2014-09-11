@@ -18,15 +18,17 @@ namespace EmpManagement.Controllers
         private EmpContext db = new EmpContext();
       
         //Home page of the Employee
-        public ActionResult Index( string actionlink)
+        public JsonResult Index()
         {
                 var empdata = db.emp.ToList();
-                if (empdata.Count == 0)
-                {
-                    return RedirectToAction("Datanotavailable");
-                }
+                //if (empdata.Count == 0)
+                //{
+                //    return RedirectToAction("Datanotavailable");
+                //}
                 
-                return View(empdata);                      
+                //return View(empdata);             
+                var serializedata = JsonConvert.SerializeObject(empdata);
+                return Json(serializedata, JsonRequestBehavior.AllowGet);
         }
 
         // If there is no data in Employee entity.
