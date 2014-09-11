@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EmpManagement.Models.Dept>
+@{
+    ViewBag.Title = "Index";
+}
+
+@section JavaScript{
+       <script type="text/javascript" src="@Url.Content("~/Content/js/Deptjquery.js")"></script>
+ }
+<link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
+<h1 style="color:blue"> Department Details </h1>
+<div class="jumbotron" id="div1">
+    <table class=" table" cellspacing="10" id="Indextable">
+           <tr>
+            <td>
+                @Html.ActionLink("Home", "../Home/Index")|
+                @Html.ActionLink("Create New", "Create")
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <b>Department Name</b>
+
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelitem => item.DName, new { id=item.ID})
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "delete", id= item.ID ,name = item.DName})                 
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "detail", id = item.ID, name = item.DName })
+                </td>
+            </tr>
+        }
+    </table>
+    </div>
