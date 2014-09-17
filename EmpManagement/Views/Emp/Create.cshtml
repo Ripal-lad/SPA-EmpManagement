@@ -4,104 +4,112 @@
     ViewBag.Title = "Create";
     var x = ViewBag.DeptList;
 }
-@section JavaScript{
-    <script type="text/javascript" src="@Url.Content("~/Content/js/Emp.js")"></script>
-}
+
   
-             <div class="jumbotron">
 
-                @Html.AntiForgeryToken()
-                 <table cellspacing="10" align="center" class="table" cellpadding="5" style="font-size:large">
-                    <tr>
-                        <td align="center">
-                            <h2 style="color:blue"> Create new employee </h2>
-                        </td>
-                    </tr>
+<div class="divcreate jumbotron" >
 
-                    <tr>
-                        <td>
-                            @Html.LabelFor(model => model.Name)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.Name, new {id = "txtname"})
-                            <div id="errorname">
+    <table cellspacing="10" align="center" class="table" id="tablecreate" cellpadding="5" style="font-size:large"></table>
 
-                            </div>
-                            @Html.ValidationMessageFor(model => model.Name)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td><b>  Department: </b></td>
-                        <td>
-                            @Html.DropDownListFor((model => model.DeptID), ViewBag.DeptList as SelectList, "Select Department", new { id = "ddldept" })
-                            <div id="errordept">
-
-                            </div>
-                            @Html.ValidationMessageFor(model => model.DeptID,"The department field is required")
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            @Html.LabelFor(model => model.Designation)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.Designation, new { id = "txtdesignation" })
-                            <div id="errordesignation">
-
-                            </div>
-                            @Html.ValidationMessageFor(model => model.Designation)
-                         
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            @Html.LabelFor(model => model.Emailid)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.Emailid, new { id = "txtemailid" })
-                            <div id="erroremailid">
-
-                            </div>
-                            @Html.ValidationMessageFor(model => model.Emailid)
-                          
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            @Html.LabelFor(model => model.ContactNo)
-                        </td>
-                        <td>
-                            @Html.TextBoxFor(model => model.ContactNo, new { id = "txtcontactno" })
-                            <div id="errorcontactno">
-
-                            </div>
-                            @Html.ValidationMessageFor(model => model.ContactNo)
-                        
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td align="center" colspan="2">
-                            <input type="button" value="Create" class="btncreate" name=" create">
-                            <input type="button" value="Cancel" name="Reset" class="cancel" >
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            @Html.ActionLink("Back to List", "Index")
-                        </td>
-                    </tr>
-                </table>
-
-            </div>
-       
+</div>
 
 
+  @*       @section JavaScript{
+        <script type="text/javascript" src="@Url.Content("~/Content/js/Emp.js")"></script>
+    }    <div class="jumbotron">
+
+            @Html.AntiForgeryToken()
+             <table cellspacing="10" align="center" class="table" cellpadding="5" style="font-size:large">
+                <tr>
+                    <td align="center">
+                        <h2 style="color:blue"> Create new employee </h2>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Name)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Name, new {id = "txtname"})
+                        <div id="errorname">
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><b>  Department: </b></td>
+                    <td>
+                        @Html.DropDownListFor((model => model.DeptID), ViewBag.DeptList as SelectList, "Select Department", new { id = "ddldept" })
+                        <div id="errordept">
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.DeptID,"The department field is required")
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Designation)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Designation, new { id = "txtdesignation" })
+                        <div id="errordesignation">
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Designation)
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Emailid)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Emailid, new { id = "txtemailid" })
+                        <div id="erroremailid">
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Emailid)
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ContactNo)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ContactNo, new { id = "txtcontactno" })
+                        <div id="errorcontactno">
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.ContactNo)
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center" colspan="2">
+                        <input type="button" value="Create" class="btncreate" name=" create">
+                        <input type="button" value="Cancel" name="Reset" class="cancel" >
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.ActionLink("Back to List", "Index")
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+
+*@
 
 
 

@@ -18,13 +18,19 @@ namespace EmpManagement.Controllers
         private EmpContext db = new EmpContext();
       
         //Home page of the Employee
-        public JsonResult Index()
+        public ActionResult Index()
+        {
+            return View();
+
+        }
+        //Display all data from database.
+        public JsonResult LoadEmpdata()
         {
                 var empdata = db.emp.ToList();
-                //if (empdata.Count == 0)
-                //{
-                //    return RedirectToAction("Datanotavailable");
-                //}
+                if (empdata.Count == 0)
+                {
+                    return Json("Nodatafound", JsonRequestBehavior.AllowGet);
+                }
                 
                 //return View(empdata);             
                 var serializedata = JsonConvert.SerializeObject(empdata);
@@ -42,23 +48,17 @@ namespace EmpManagement.Controllers
         // Add  new employee details in database
         public ActionResult Create()
         {
-            var depts = db.Dept.ToList();
-
-            SelectList deptlist1 = new SelectList(depts, "ID", "DName");
-            ViewBag.DeptList = deptlist1;
-            //if (depts.Count == 0)
-            //{
-            //    return RedirectToAction("DeptNotavailable");
-            //}
-            //var serializedata = JsonConvert.SerializeObject(depts);
-            //return Json(serializedata, JsonRequestBehavior.AllowGet);
-           return View();
+            return View();
          }
 
         //Get department for dropdownlist
         public JsonResult Getdepartment()
         {
             var depts = db.Dept.ToList();
+            if (depts.Count == 0)
+            {
+                return Json("serializedata", JsonRequestBehavior.AllowGet);
+            }
             var serializedata = JsonConvert.SerializeObject(depts);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
  
@@ -69,6 +69,10 @@ namespace EmpManagement.Controllers
             return View();
         }
 
+        public ActionResult Details()
+        {
+            return View();
+        }
         [HttpGet]
         public JsonResult Detail()
         {
@@ -97,23 +101,23 @@ namespace EmpManagement.Controllers
 
         // Details
         // Display details of the Employee
-        public ActionResult Details(int? id)
-        {
-            var depts = db.Dept.ToList();
-            SelectList deptlist1 = new SelectList(depts);
-            ViewBag.DeptList = deptlist1;
+        //public ActionResult Details(int? id)
+        //{
+        //    var depts = db.Dept.ToList();
+        //    SelectList deptlist1 = new SelectList(depts);
+        //    ViewBag.DeptList = deptlist1;
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var e = db.emp.Find(id);
-            if (e == null)
-            {
-                return HttpNotFound();
-            }
-            return View(e);
-        }
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    var e = db.emp.Find(id);
+        //    if (e == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(e);
+        //}
 
         //Edit
         // Redirect to the Edit page
@@ -138,14 +142,10 @@ namespace EmpManagement.Controllers
             //return View(e);
            
         }
-        //public ActionResult Edit()
-        //{
-        //    var depts = db.Dept.ToList();
-        //    SelectList deptlist1 = new SelectList(depts, "ID", "DName");
-        //    ViewBag.DeptList = deptlist1;
-
-        //    return View();
-        //}
+        public ActionResult Edit()
+        {
+             return View();
+        }
         // It will update data in entitty.
         [HttpPost]
         public JsonResult Edit(Employee em)

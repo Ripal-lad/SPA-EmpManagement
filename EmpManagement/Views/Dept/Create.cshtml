@@ -3,14 +3,17 @@
     ViewBag.Title = "Create";
  }
 
-@section JavaScript{
+@*@section JavaScript{
         <script type="text/javascript" src="@Url.Content("~/Content/js/Deptjquery.js")"></script>
     }
-<div class="jumbotron">
+*@
+    <div class="divdeptcreate">
+        <table align="center" class="table" id="deptcreate" cellspacing="10" cellpadding="2"></table>
+    </div>
   @* @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken();
-  }*@
+  }
         <h2 style="color:blue"> Create new department </h2>
    
     <table cellspacing="10" align="center" class="table" cellpadding="5" style="font-size:large">
@@ -46,6 +49,6 @@
         <td>
 </table>
     
-</div>
+</div>*@
     
     

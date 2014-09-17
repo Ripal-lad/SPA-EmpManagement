@@ -13,5 +13,10 @@ namespace EmpManagement.Controllers
         {
             return View();
         }
+
+        public ActionResult Empmanagement()
+        {
+            return View();
+        }
     }
 }

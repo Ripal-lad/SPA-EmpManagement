@@ -3,30 +3,36 @@
     ViewBag.Title = "DeptNotavailable";
 }
 
+<div class="divdeptnotexist jumbotron">
 
-<div class="jumbotron">
-    <table>
-        <tr>
-            <td>
-                <h2 style="color:blue"> Currently there is no department yet. </h2>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h3 style="color:chocolate"> First add department details </h3>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.ActionLink("Add Department", "DeptController")
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.ActionLink("Back to List", "Index")
+    <table cellspacing="10" align="center" id="tabledeptnotexist" class="table" cellpadding="5" style="font-size:large"></table>
 
-            </td>
-        </tr>
-    </table>
 </div>
-    
+@*
+    <div class="jumbotron">
+        <table>
+            <tr>
+                <td>
+                    <h2 style="color:blue"> Currently there is no department yet. </h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3 style="color:chocolate"> First add department details </h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Add Department", "DeptController")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.ActionLink("Back to List", "Index")
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+*@

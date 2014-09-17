@@ -2,62 +2,65 @@
 @{
     ViewBag.Title = "Index";
 }
+@*
+    @section JavaScript{
+           <script type="text/javascript" src="@Url.Content("~/Content/js/.js")"></script>
+     }
+*@
 
-@section JavaScript{
-       <script type="text/javascript" src="@Url.Content("~/Content/js/Deptjquery.js")"></script>
- }
-
-
-    <div class="divindex jumbotron" id="divindex">
-        <h2 style="color:blue"> Department Details </h2>
-        <table class=" table" cellspacing="10" id="Indextable">
-            <tr>
-                <td>
-                    @Html.ActionLink("Home", "../Home/Index")|
-                    @Html.ActionLink("Create New", "Create")
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    <b>Department Name</b>
-
-                </th>
-
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelitem => item.DName, new { id = item.ID })
-                    </td>
-
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "delete", id = item.ID, name = item.DName })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "detail", id = item.ID, name = item.DName })
-                    </td>
-                </tr>
-            }
-        </table>
+    <div class="divdeptindex" >
+        <table align="center" class="table" id="depttable" cellspacing="10" cellpadding="2"></table>
     </div>
+    @*  <div class="divindex jumbotron" id="divindex">
+                <h2 style="color:blue"> Department Details </h2>
+                <table class=" table" cellspacing="10" id="Indextable">
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Home", "../Home/Index")|
+                            @Html.ActionLink("Create New", "Create")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            <b>Department Name</b>
 
-    <div class="divdetail jumbotron" style="display: none">
-        <table cellspacing="10" align="center" id="detailtable" cellpadding="5" style="font-size:large">
-          @*x   <tr>
-                <td>
-                    @Html.ActionLink("Back to List", "Index")
-                </td>
-            </tr>*@
-        </table>
-    </div>
-<div class="divnodata jumbotron" style="display: none">
-    <table cellspacing="10"id="Nodatatable" cellpadding="5" style="font-size:large">
-      
-    </table>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelitem => item.DName, new { id = item.ID })
+                            </td>
+
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "delete", id = item.ID, name = item.DName })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "detail", id = item.ID, name = item.DName })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+            <div class="divdetail jumbotron" style="display: none">
+                <table cellspacing="10" align="center" id="detailtable" cellpadding="5" style="font-size:large">
+                  @*x   <tr>
+                        <td>
+                            @Html.ActionLink("Back to List", "Index")
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        <div class="divnodata jumbotron" style="display: none">
+            <table cellspacing="10"id="Nodatatable" cellpadding="5" style="font-size:large">
+
+            </table>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
