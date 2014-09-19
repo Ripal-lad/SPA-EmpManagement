@@ -1,54 +1,7 @@
-﻿@model EmpManagement.Models.Dept
-@{
+﻿@{
     ViewBag.Title = "Edit";
 }
 
 <div class="divdeptupdate">
     <table align="center" class="table" id="deptupdate" cellspacing="10" cellpadding="2"></table>
 </div>
-
-@*
-    @section JavaScript{
-        <script type="text/javascript" src="@Url.Content("~/Content/js/Deptjquery.js")"></script>
-    }
-    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css">
-    <div class="jumbotron">
-
-
-        <table cellspacing="10" align="center" class="table" cellpadding="5" style="font-size:large">
-            <tr>
-                <td>
-                    <h2 style="color:blue"> Update department</h2>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                   Department:
-                </td>
-                <td id="txtdeptid">
-                    @Html.TextBoxFor(model => model.DName, new { @class = "txtdept", id1 = Model.ID, id2 = Model.DName })
-                    <div id="error">
-                        </div>
-                    @Html.ValidationMessageFor(model => model.DName,"This field is required" )
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td align="center" >
-                    <input type="button" value="Update" class="ed" />
-
-                    <input type="button" value="Cancel" class="cancel">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.ActionLink("Back to List", "Index")
-                </td>
-            <tr>
-        </table>
-
-      </div>
-
-*@

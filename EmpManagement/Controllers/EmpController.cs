@@ -23,48 +23,53 @@ namespace EmpManagement.Controllers
             return View();
 
         }
+        [HttpGet]
         //Display all data from database.
-        public JsonResult LoadEmpdata()
+        public JsonResult LoadEmployee()
         {
-                var empdata = db.emp.ToList();
-                if (empdata.Count == 0)
+            var EmployeeList = db.Employee.ToList();
+            if (EmployeeList.Count == 0)
                 {
                     return Json("Nodatafound", JsonRequestBehavior.AllowGet);
                 }
-                
-                //return View(empdata);             
-                var serializedata = JsonConvert.SerializeObject(empdata);
+
+            var serializedata = JsonConvert.SerializeObject(EmployeeList);
                 return Json(serializedata, JsonRequestBehavior.AllowGet);
         }
 
-        // If there is no data in Employee entity.
-        public ActionResult Datanotavailable()
-        {
-            return View();
-        }
-      
-
         // Create
-        // Add  new employee details in database
+       //Redirect to the create view.
         public ActionResult Create()
         {
             return View();
          }
 
-        //Get department for dropdownlist
-        public JsonResult Getdepartment()
+        // Add  new employee details in database
+        [HttpPost]
+        public ActionResult Create(Employee employee)
         {
-            var depts = db.Dept.ToList();
-            if (depts.Count == 0)
+            db.Employee.Add(employee);
+            db.SaveChanges();
+
+            return Json(employee, JsonRequestBehavior.AllowGet);
+        }
+
+       
+      //  Get department for dropdownlist
+        [HttpGet]
+        public JsonResult GetDepartment()
+        {
+            var DeptList = db.Department.ToList();
+            if (DeptList.Count == 0)
             {
                 return Json("serializedata", JsonRequestBehavior.AllowGet);
             }
-            var serializedata = JsonConvert.SerializeObject(depts);
+            var serializedata = JsonConvert.SerializeObject(DeptList);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
- 
+
         }
         // If there is no department in dept table.
-        public ActionResult DeptNotavailable()
+        public ActionResult DeptNotAvailable()
         {
             return View();
         }
@@ -76,140 +81,50 @@ namespace EmpManagement.Controllers
         [HttpGet]
         public JsonResult Detail()
         {
-            var empdetails = from m in db.emp
+            var EmployeeDetails = from m in db.Employee
                              select m;
-            var serializedata = JsonConvert.SerializeObject(empdetails);
+            var serializedata = JsonConvert.SerializeObject(EmployeeDetails);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
         }
-        // Post Empmanagement/create
-        [HttpPost]
-        // Prevents from cross request site forgery 
-      //  [ValidateAntiForgeryToken]
-        public ActionResult create( Employee em)
-        {
-            //var depts = db.Dept.ToList();
-            //SelectList deptlist1 = new SelectList(depts, "ID", "DName");
-            //ViewBag.DeptList = deptlist1;
-            //    if (ModelState.IsValid)
-            //    {
-                    db.emp.Add(em);
-                    db.SaveChanges();
-                //    return RedirectToAction("Index");
-                //}            
-                    return Json(em, JsonRequestBehavior.AllowGet);
-        }
 
-        // Details
-        // Display details of the Employee
-        //public ActionResult Details(int? id)
-        //{
-        //    var depts = db.Dept.ToList();
-        //    SelectList deptlist1 = new SelectList(depts);
-        //    ViewBag.DeptList = deptlist1;
-
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var e = db.emp.Find(id);
-        //    if (e == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(e);
-        //}
-
+      
         //Edit
         // Redirect to the Edit page
         [HttpGet]
-        public JsonResult Getemployeedata(int id)
+        public JsonResult GetEmployee(int id)
         {
-            //var depts = db.Dept.ToList();
-            //SelectList deptlist1 = new SelectList(depts, "ID", "DName");
-            //ViewBag.DeptList = deptlist1;
-           
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest,"no data found");
-            //}
-            var empdata = db.emp.Find(id);
-             var serializedata = JsonConvert.SerializeObject(empdata);
+            var Employeedata = db.Employee.Find(id);
+            var serializedata = JsonConvert.SerializeObject(Employeedata);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
-            //if (e == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(e);
-           
+          
         }
         public ActionResult Edit()
         {
              return View();
         }
+
         // It will update data in entitty.
         [HttpPost]
-        public JsonResult Edit(Employee em)
+        public JsonResult Edit(Employee employee)
         {
-            //    var depts = db.Dept.ToList();
-            //    SelectList deptlist1 = new SelectList(depts, "ID", "DName");
-            //    ViewBag.DeptList = deptlist1;
-
-            //    if (ModelState.IsValid)
-            //    {
-            db.Entry(em).State = EntityState.Modified;
+            db.Entry(employee).State = EntityState.Modified;
             db.SaveChanges();
-            //  return RedirectToAction("Index");
-            //}
-            return Json(em, JsonRequestBehavior.AllowGet);
+
+            return Json(employee, JsonRequestBehavior.AllowGet);
         }
         //Delete
         [HttpPost]
         public ActionResult Delete(int id)
         {
 
-            var deptdata = db.emp.Find(id);
-            db.emp.Remove(deptdata);
+            var Employeedata = db.Employee.Find(id);
+            db.Employee.Remove(Employeedata);
             db.SaveChanges();
-           
-            var serializedata = JsonConvert.SerializeObject(deptdata);
+
+            var serializedata = JsonConvert.SerializeObject(Employeedata);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
-            //var depts = db.Dept.ToList();
-            //SelectList deptlist1 = new SelectList(depts);
-            //ViewBag.DeptList = deptlist1;
-
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //var e = db.emp.Find(id);
-            //if(e == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            ////var serializedata = JsonConvert.SerializeObject(e);
-            //return View(e);
+           
         }
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, String submit)
-        //{
-
-        //    if (submit.Equals("Yes"))
-        //    {
-        //        //var e = db.emp.Find(id);
-        //        //var serializedata = JsonConvert.SerializeObject(e);
-        //        var e = db.emp.Find(id);
-        //        db.emp.Remove(e);
-        //        db.SaveChanges();
-        //        //return View(serializedata);
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //}
-               
+    
     }
 }

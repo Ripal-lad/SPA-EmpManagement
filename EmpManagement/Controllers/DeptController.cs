@@ -18,20 +18,20 @@ namespace EmpManagement.Controllers
         // display the home page of the department
         public ActionResult Index()
         {
-            var Department = from m in db.Dept
-                             select m;                    
-                         
-            return View(Department);
+            var department = from m in db.Department
+                             select m;
+
+            return View(department);
         }
 
         // to get the detail of the department.
         [HttpGet]
-        public JsonResult Getdepartment()
+        public JsonResult GetDepartment()
         {
-            var Department = from m in db.Dept
+            var department = from m in db.Department
                              select m;
 
-            var serializedata = JsonConvert.SerializeObject(Department);
+            var serializedata = JsonConvert.SerializeObject(department);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
         }
 
@@ -42,13 +42,27 @@ namespace EmpManagement.Controllers
 
         //get data for dept details.
         [HttpGet]
-        public JsonResult Getempdata()
+        public JsonResult GetEmployee()
         {
-            var empdetails = from m in db.emp
+            var EmployeeList = from m in db.Employee
                              select m;
-            var serializedata = JsonConvert.SerializeObject(empdetails);
+            var serializedata = JsonConvert.SerializeObject(EmployeeList);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
         }
+
+        //If dept table is empty.
+        [HttpGet]
+        public JsonResult NoDepartmentFound()
+        {
+            var DepartmentList = db.Department.ToList();
+            if (DepartmentList.Count == 0)
+            {
+                return Json("Nodatafound", JsonRequestBehavior.AllowGet);
+            }
+            var serializedata = JsonConvert.SerializeObject(DepartmentList);
+            return Json(serializedata, JsonRequestBehavior.AllowGet);
+        }
+
         //Create
         public ActionResult Create()
         {
@@ -57,13 +71,12 @@ namespace EmpManagement.Controllers
 
         // Post Empmanagement/Ecreate
         [HttpPost]
-        public ActionResult create( Dept d)
+        public ActionResult Create(Department department)
         {
-                    db.Dept.Add(d);
+                    db.Department.Add(department);
                     db.SaveChanges();
 
-                    return Json(d, JsonRequestBehavior.AllowGet);
-             
+                    return Json(department, JsonRequestBehavior.AllowGet);
         }
         
         public ActionResult DeptAlreadyExist()
@@ -80,38 +93,34 @@ namespace EmpManagement.Controllers
         // It will Update data in entitty.
         [HttpPost]
       //  [ValidateAntiForgeryToken]
-        public ActionResult Edit(Dept d)
+        public ActionResult Edit(Department department)
         {
-                db.Entry(d).State = EntityState.Modified;
+                db.Entry(department).State = EntityState.Modified;
                 db.SaveChanges();
-                
-                return Json(d, JsonRequestBehavior.AllowGet);
+
+                return Json(department, JsonRequestBehavior.AllowGet);
             
         }
 
           
         // Display details of the Employee
         [HttpGet]
-        public JsonResult LoadEmpdata(int id)
+        public JsonResult LoadEmployee(int id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            var empdata = db.emp.ToList();
-            for (int i = 0; i < empdata.Count; i++) // It will Check wheather employees exist in respective department
+
+            var EmployeeList = db.Employee.ToList();
+            for (int i = 0; i < EmployeeList.Count; i++) // It will Check wheather employees exist in respective department
             {
-                if (empdata[i].DeptID == id)
+                if (EmployeeList[i].DeptID == id)
                 {
-                    var empdetails = from e in db.emp
+                    var empdetails = from e in db.Employee
                                      where e.DeptID == id
                                      select e;
                     var serializedata = JsonConvert.SerializeObject(empdetails);
                     return Json(serializedata, JsonRequestBehavior.AllowGet);
-                    //return View(empdetails);
-                }
+                 }
             }
-            return Json("serializedata", JsonRequestBehavior.AllowGet);
+            return Json("Nodatafound", JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult NoDataFound()
@@ -124,38 +133,13 @@ namespace EmpManagement.Controllers
         [HttpPost]
         public JsonResult Delete(int id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            var deptdata = db.Dept.Find(id);
-            db.Dept.Remove(deptdata);
+            var department = db.Department.Find(id);
+            db.Department.Remove(department);
             db.SaveChanges();
-            var serializedata = JsonConvert.SerializeObject(deptdata);
+            var serializedata = JsonConvert.SerializeObject(department);
             return Json(serializedata, JsonRequestBehavior.AllowGet);
-            //return View(deptdata);
-        }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, String submit)
-        //{
-        //    //var deptdata = db.Dept.Find(id);
-
-        //    //    return Json(serializedata, JsonRequestBehavior.AllowGet);
-        //    if (submit.Equals("Yes"))
-        //    {
-        //        var e = db.Dept.Find(id);
-        //        db.Dept.Remove(e);
-        //        db.SaveChanges();
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-        //}
-
+         }
+       
 
     }
 }

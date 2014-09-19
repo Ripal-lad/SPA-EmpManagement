@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
     <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
     <IncludeIisSettings>true</IncludeIisSettings>
+    <PublishDatabaseSettings>
+      <Objects>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,6 +49,9 @@
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -110,13 +117,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\Site.css" />
-    <Content Include="Content\js\Deptjquery.js" />
-    <Content Include="Content\js\Empjquery.js" />
-    <Content Include="Content\js\demo.js" />
-    <Content Include="Content\js\Validation.js" />
+    <Content Include="Content\Image\loading-icon.gif" />
+    <Content Include="Content\Image\round-loading-icon.gif" />
+    <Content Include="Content\js\demo1.js" />
+    <Content Include="Content\js\Emp.js" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\Test.pubxml" />
     <Content Include="Scripts\angular-animate.js" />
@@ -619,7 +627,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DeptController.cs" />
     <Compile Include="Controllers\EmpController.cs" />

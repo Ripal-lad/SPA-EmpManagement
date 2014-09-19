@@ -18,8 +18,8 @@ namespace EmpManagement.DAL
             Database.SetInitializer<EmpContext>(new DropCreateDatabaseIfModelChanges<EmpContext>());
         }
 
-        public DbSet<Employee> emp { get; set; }
-        public DbSet<Dept> Dept { get; set; }
+         public DbSet<Employee> Employee { get; set; }
+        public DbSet<Department> Department { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
