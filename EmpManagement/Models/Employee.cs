@@ -26,7 +26,7 @@ namespace EmpManagement.Models
         public string Emailid { get; set; }
         
         // Act as a foriegn key of dept class 
-         public int DeptID { get; set; }
+         public int DepartmentID { get; set; }
 
         // This is because Emplpoyee has many to 1 relationship with dept
 
